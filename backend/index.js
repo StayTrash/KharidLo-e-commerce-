@@ -4,6 +4,14 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
+import cors from 'cors';
+
+app.use(cors({
+  origin: "https://kharidlo-b4cd.onrender.com", // or wherever frontend is deployed
+  credentials: true
+}));
+
+
 // Utiles
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
