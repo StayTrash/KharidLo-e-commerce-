@@ -3,3 +3,9 @@
 # Dependencies
 node_modules/
 **/node_modules/
+
+# Uploads (keep directory structure but ignore files)
+backend/uploads/*
+!backend/uploads/.gitkeep
+frontend/uploads/*
+!frontend/uploads/.gitkeep

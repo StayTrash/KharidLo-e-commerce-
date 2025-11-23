@@ -22,7 +22,7 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: "https://kharidlo-b4cd.onrender.com", // or wherever frontend is deployed
+  origin: process.env.FRONTEND_URL || "https://kharidlo-b4cd.onrender.com",
   credentials: true
 }));
 
@@ -41,6 +41,10 @@ app.get("/api/config/paypal", (req, res) => {
 });
 
 const __dirname = path.resolve();
-app.use("/uploads", express.static(path.join(__dirname, "frontend", "uploads")));
+// For production (Render), serve from backend/uploads. For local dev, use frontend/uploads
+const uploadsPath = process.env.NODE_ENV === 'production'
+  ? path.join(__dirname, "backend", "uploads")
+  : path.join(__dirname, "frontend", "uploads");
+app.use("/uploads", express.static(uploadsPath));
 
 app.listen(port, () => console.log(`Server running on port: ${port}`));

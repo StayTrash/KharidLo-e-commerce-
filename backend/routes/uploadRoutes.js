@@ -10,7 +10,11 @@ const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "..", "..", "frontend", "uploads"));
+    // For production (Render), use backend/uploads. For local dev, use frontend/uploads
+    const uploadPath = process.env.NODE_ENV === 'production' 
+      ? path.join(__dirname, "..", "uploads")
+      : path.join(__dirname, "..", "..", "frontend", "uploads");
+    cb(null, uploadPath);
   },
 
   filename: (req, file, cb) => {
