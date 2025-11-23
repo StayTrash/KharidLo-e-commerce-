@@ -42,6 +42,7 @@ app.get("/api/config/paypal", (req, res) => {
 
 const __dirname = path.resolve();
 // For production (Render), serve from backend/uploads. For local dev, use frontend/uploads
+// On Render, __dirname is project root, so backend/uploads is correct
 const uploadsPath = process.env.NODE_ENV === 'production'
   ? path.join(__dirname, "backend", "uploads")
   : path.join(__dirname, "frontend", "uploads");
