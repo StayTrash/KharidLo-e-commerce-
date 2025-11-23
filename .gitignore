@@ -9,3 +9,12 @@ backend/uploads/*
 !backend/uploads/.gitkeep
 frontend/uploads/*
 !frontend/uploads/.gitkeep
+
+# Documentation files
+DEPLOYMENT.md
+DEPLOYMENT_CHECKLIST.md
+DEPLOYMENT_CONFIG.md
+ENVIRONMENT_VARIABLES.md
+IMAGE_LOADING_FIX.md
+POSTMAN_TESTING_GUIDE.md
+RENDER_FRONTEND_DEPLOYMENT.md
