@@ -1,12 +1,16 @@
 import path from "path";
 import express from "express";
 import multer from "multer";
+import { fileURLToPath } from "url";
 
 const router = express.Router();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, path.join(__dirname, "..", "..", "frontend", "uploads"));
   },
 
   filename: (req, file, cb) => {
@@ -39,7 +43,7 @@ router.post("/", (req, res) => {
     } else if (req.file) {
       res.status(200).send({
         message: "Image uploaded successfully",
-        image: `/${req.file.path}`,
+        image: `/uploads/${req.file.filename}`,
       });
     } else {
       res.status(400).send({ message: "No image file provided" });
